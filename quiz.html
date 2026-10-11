@@ -160,19 +160,38 @@ header.mini h1{font-size:22px}
       ['Vergonha de posar', '😬', 'Sem câmera na sua frente e sem ninguém olhando: você manda uma foto simples e recebe o ensaio pronto.'],
       ['Não tenho fotógrafo perto', '📍', 'Não precisa: tudo é feito a distância, de qualquer cidade.']] }
   ];
-  var params = new URLSearchParams(location.search);
-  var nome = (params.get('nome') || '').trim();
-  if (nome) document.getElementById('titulo').textContent = 'Vamos montar o seu ensaio, ' + nome;
+  var el = function (id) { return document.getElementById(id); };
 
-  // Repassa para a Cakto só os parâmetros de rastreio do anúncio
+  // Guarda nome e WhatsApp no aparelho, para preencher de novo se a pessoa voltar depois
+  function lerSalvo(k) { try { return localStorage.getItem('murilo_' + k) || ''; } catch (e) { return ''; } }
+  function salvar(k, v) { try { localStorage.setItem('murilo_' + k, v); } catch (e) {} }
+
+  var params = new URLSearchParams(location.search);
+  var nome = (params.get('nome') || '').trim() || lerSalvo('nome');
+  if (nome) { salvar('nome', nome); document.getElementById('titulo').textContent = 'Vamos montar o seu ensaio, ' + nome; }
+
+  // Repassa para a Cakto os parâmetros de rastreio do anúncio
   var fwd = new URLSearchParams();
   params.forEach(function (v, k) { if (/^utm_/.test(k) || ['fbclid', 'src', 'sck'].indexOf(k) >= 0) fwd.set(k, v); });
-  var checkoutUrl = CHECKOUT + (fwd.toString() ? '?' + fwd.toString() : '');
   var pagar = document.getElementById('pagar');
-  pagar.href = checkoutUrl;
+
+  // Número só com DDD + telefone (aceita também quem digita +55 na frente)
+  function digitos(v) {
+    var d = String(v || '').replace(/\D/g, '');
+    if ((d.length === 12 || d.length === 13) && d.indexOf('55') === 0) d = d.slice(2);
+    return d;
+  }
+  // Link da Cakto já com WhatsApp (55 + DDD + número) e nome preenchidos
+  function linkCheckout() {
+    var q = new URLSearchParams(fwd);
+    var d = digitos(el('zap').value);
+    if (d.length === 10 || d.length === 11) q.set('phone', '55' + d);
+    if (nome) q.set('name', nome);
+    var s = q.toString();
+    return CHECKOUT + (s ? '?' + s : '');
+  }
 
   var idx = 0, answers = {}, notes = {};
-  var el = function (id) { return document.getElementById(id); };
 
   function render() {
     var total = Q.length, isFinal = idx >= total;
@@ -217,17 +236,22 @@ header.mini h1{font-size:22px}
   el('voltarFinal').addEventListener('click', function () { idx = Q.length - 1; render(); window.scrollTo(0, 0); });
 
   var zap = el('zap');
-  function phoneOk() { var d = zap.value.replace(/\D/g, ''); return d.length === 10 || d.length === 11; }
-  zap.addEventListener('input', function () {
+  function phoneOk() { var d = digitos(zap.value); return d.length === 10 || d.length === 11; }
+  function atualizar() {
     var ok = phoneOk();
     pagar.classList.toggle('off', !ok);
-    if (ok) { zap.classList.remove('bad'); el('zapErr').hidden = true; }
-  });
+    pagar.href = linkCheckout();
+    if (ok) { zap.classList.remove('bad'); el('zapErr').hidden = true; salvar('zap', zap.value.trim()); }
+  }
+  zap.value = lerSalvo('zap');
+  zap.addEventListener('input', atualizar);
+  atualizar();
   pagar.addEventListener('click', function (e) {
     if (!phoneOk()) {
       e.preventDefault(); zap.classList.add('bad'); el('zapErr').hidden = false; zap.focus();
       return;
     }
+    pagar.href = linkCheckout();
     if (window.fbq) {
       fbq('track', 'Lead');
       fbq('track', 'InitiateCheckout', { value: 39.90, currency: 'BRL', num_items: 3 });
