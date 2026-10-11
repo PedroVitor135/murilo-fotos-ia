@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monte o seu ensaio · Murilo Fotos IA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '262042519903496');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=262042519903496&ev=PageView&noscript=1" alt=""></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+:root{--bg:#121110;--bg2:#1A1816;--line:#2B2723;--line2:#3A352F;--text:#F4EFE8;--muted:#B8AFA4;--soft:#CFC7BC;--faint:#8C847A;--gold:#E8B04B;--ink:#1A1209;--err:#F2A07B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:56px 20px 48px;display:flex;flex-direction:column;gap:32px}
+header{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.icon{width:60px;height:60px;border-radius:18px;background:var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.tag{font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h1{margin:0;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(28px,4.4vw,40px);line-height:1.15}
+header p{margin:0;max-width:540px;color:var(--muted);font-size:17px}
+.price{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;min-height:36px;padding:6px 16px;border:1px solid var(--line2);border-radius:999px;font-size:15px;color:var(--soft)}
+.price b{color:var(--gold)}
+.prog-top{display:flex;justify-content:space-between;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.bar{height:6px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:8px}
+.bar div{height:6px;border-radius:999px;background:var(--gold);transition:width .3s}
+.note{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:16px;background:#241E14;border:1px solid #4A3F2C}
+.note .s{font-size:22px;line-height:1.2}
+h2{margin:0;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,3.6vw,32px);line-height:1.2}
+.sub{margin:-8px 0 0;color:var(--muted)}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{display:flex;align-items:center;gap:16px;min-height:76px;padding:10px 16px 10px 10px;border-radius:18px;border:2px solid var(--line);background:var(--bg2);color:var(--text);font:inherit;text-align:left;cursor:pointer}
+.opt:hover,.opt:focus-visible,.opt.on{border-color:var(--gold)}
+.opt .e{flex:0 0 auto;width:56px;height:56px;border-radius:12px;background:#241F1A;font-size:28px;display:flex;align-items:center;justify-content:center}
+.opt .t{font-size:18px;font-weight:700}
+.link{align-self:flex-start;min-height:44px;padding:0;border:0;background:transparent;color:var(--muted);font:inherit;font-size:15px;text-decoration:underline;cursor:pointer}
+.sum{display:flex;flex-direction:column;gap:10px;padding:18px 20px;border-radius:18px;border:1px solid var(--line);background:var(--bg2)}
+.sum .k{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;background:#241E14;border:1px solid #4A3F2C;font-size:15px;font-weight:600}
+.sum p{margin:0;color:var(--soft);font-size:15px}
+label.big{font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,3.6vw,32px);line-height:1.2}
+.field{min-height:58px;padding:0 20px;border-radius:16px;border:1px solid var(--line2);background:var(--bg2);color:var(--text);font:inherit;font-size:20px;width:100%}
+.field.bad{border-color:var(--err)}
+.field::placeholder{color:var(--faint)}
+.err{margin:-8px 0 0;font-size:15px;color:var(--err)}
+.pay{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:0 28px;border-radius:16px;background:var(--gold);color:var(--ink);font-weight:700;font-size:18px;text-decoration:none}
+.pay.off{opacity:.45}
+.small{margin:0;font-size:14px;color:var(--faint);text-align:center}
+.home{align-self:center;font-size:15px;color:var(--faint)}
+section{display:flex;flex-direction:column;gap:18px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 3v4"/><path d="M17 5h4"/></svg></div>
+    <span class="tag">Ensaio profissional com IA · sem estúdio, sem sair de casa</span>
+    <h1 id="titulo">Vamos montar o seu ensaio</h1>
+    <p>Responda algumas perguntas rápidas. Leva menos de um minuto.</p>
+    <span class="price">3 fotos · R$ 39,90 <b>só R$ 13,30 por foto</b></span>
+  </header>
+
+  <div>
+    <div class="prog-top"><span id="progLabel">Pergunta 1 de 5</span><span id="progPct">0%</span></div>
+    <div class="bar"><div id="progBar" style="width:0%"></div></div>
+  </div>
+
+  <div class="note" id="note" role="status" hidden><span class="s" aria-hidden="true">✨</span><span id="noteText"></span></div>
+
+  <section id="pergunta">
+    <h2 id="qTitle"></h2>
+    <p class="sub" id="qSub" hidden></p>
+    <div class="opts" id="opts"></div>
+    <button type="button" class="link" id="voltar" hidden>Voltar</button>
+  </section>
+
+  <section id="final" hidden>
+    <div class="sum">
+      <span class="k">O seu ensaio</span>
+      <div class="chips" id="chips"></div>
+      <p>Pacote com 3 fotos em alta qualidade por R$ 39,90. Depois do pagamento, o Murilo te chama no WhatsApp para você escolher os estilos e enviar a sua foto.</p>
+    </div>
+    <label class="big" for="zap">Qual número de WhatsApp você quer receber suas fotos?</label>
+    <input class="field" id="zap" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(88) 9 9999-9999">
+    <p class="err" id="zapErr" role="alert" hidden>Informe um número válido com DDD para continuar.</p>
+    <a class="pay off" id="pagar" href="https://pay.cakto.com.br/two5twu_1168968" target="_blank" rel="noopener">Garantir meu ensaio · R$ 39,90</a>
+    <button type="button" class="link" id="voltarFinal">Voltar</button>
+  </section>
+
+  <a class="home" href="index.html">Voltar para a página inicial</a>
+</div>
+
+<script>
+(function () {
+  var CHECKOUT = 'https://pay.cakto.com.br/two5twu_1168968';
+  var Q = [
+    { key: 'quem', title: 'Quem vai aparecer nas fotos?', opts: [['Mulher', '👩'], ['Homem', '👨'], ['Criança', '🧒']] },
+    { key: 'fotogenico', title: 'Você se considera fotogênico(a)?', sub: 'Pode ser sincero, isso não muda o resultado.', opts: [
+      ['Sim, adoro tirar foto', '😄', 'Ótimo! Com a IA, você ganha fotos com luz e cenário de estúdio sem sair de casa.'],
+      ['Mais ou menos, depende do dia', '🙂', 'Então você vai gostar: a luz, o ângulo e o cenário ficam por conta da IA, e você escolhe só as melhores.'],
+      ['Não, sempre saio mal nas fotos', '😅', 'Fique tranquilo(a): você não precisa ser fotogênico(a). A IA cuida da pose, da luz e do enquadramento a partir de uma foto simples sua.']] },
+    { key: 'ambiente', title: 'Em qual ambiente você se imagina?', sub: 'Depois da compra você escolhe os estilos com calma. Aqui é só para termos uma ideia.', opts: [
+      ['Escritório elegante', '🏢'], ['Estúdio com fundo neutro', '🎞️'], ['Café ou restaurante', '☕'], ['Ao ar livre', '🌳']] },
+    { key: 'uso', title: 'Onde você vai usar as fotos?', opts: [
+      ['LinkedIn e currículo', '💼'], ['Instagram e redes sociais', '📱'], ['Site ou divulgação do meu negócio', '🌐'], ['Uso pessoal', '🖼️']] },
+    { key: 'impede', title: 'O que mais te impede de fazer um ensaio hoje?', opts: [
+      ['O preço de um fotógrafo', '💸', 'Aqui o pacote de 3 fotos sai por R$ 39,90, sem custo de estúdio nem deslocamento.'],
+      ['Falta de tempo', '⏰', 'Você só precisa enviar uma foto do celular. O resto é com o Murilo, e as fotos chegam no seu WhatsApp.'],
+      ['Vergonha de posar', '😬', 'Sem câmera na sua frente e sem ninguém olhando: você manda uma foto simples e recebe o ensaio pronto.'],
+      ['Não tenho fotógrafo perto', '📍', 'Não precisa: tudo é feito a distância, de qualquer cidade.']] }
+  ];
+  var params = new URLSearchParams(location.search);
+  var nome = (params.get('nome') || '').trim();
+  if (nome) document.getElementById('titulo').textContent = 'Vamos montar o seu ensaio, ' + nome;
+
+  // Repassa para a Cakto só os parâmetros de rastreio do anúncio
+  var fwd = new URLSearchParams();
+  params.forEach(function (v, k) { if (/^utm_/.test(k) || ['fbclid', 'src', 'sck'].indexOf(k) >= 0) fwd.set(k, v); });
+  var checkoutUrl = CHECKOUT + (fwd.toString() ? '?' + fwd.toString() : '');
+  var pagar = document.getElementById('pagar');
+  pagar.href = checkoutUrl;
+
+  var idx = 0, answers = {}, notes = {};
+  var el = function (id) { return document.getElementById(id); };
+
+  function render() {
+    var total = Q.length, isFinal = idx >= total;
+    el('progLabel').textContent = isFinal ? 'Último passo' : 'Pergunta ' + (idx + 1) + ' de ' + total;
+    var pct = Math.round(idx / (total + 1) * 100) + '%';
+    el('progPct').textContent = pct; el('progBar').style.width = pct;
+    var prev = idx > 0 ? Q[idx - 1].key : '';
+    var n = prev ? notes[prev] : '';
+    el('note').hidden = !n; el('noteText').textContent = n || '';
+    el('pergunta').hidden = isFinal; el('final').hidden = !isFinal;
+    if (isFinal) {
+      var chips = el('chips'); chips.innerHTML = '';
+      ['quem', 'ambiente', 'uso'].forEach(function (k) {
+        var q = Q.filter(function (x) { return x.key === k; })[0];
+        var o = q.opts.filter(function (x) { return x[0] === answers[k]; })[0];
+        if (!o) return;
+        var c = document.createElement('span'); c.className = 'chip';
+        c.textContent = o[1] + ' ' + o[0]; chips.appendChild(c);
+      });
+      return;
+    }
+    var q = Q[idx];
+    el('qTitle').textContent = q.title;
+    el('qSub').hidden = !q.sub; el('qSub').textContent = q.sub || '';
+    var box = el('opts'); box.innerHTML = '';
+    q.opts.forEach(function (o) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'opt' + (answers[q.key] === o[0] ? ' on' : '');
+      var e = document.createElement('span'); e.className = 'e'; e.setAttribute('aria-hidden', 'true'); e.textContent = o[1];
+      var t = document.createElement('span'); t.className = 't'; t.textContent = o[0];
+      b.appendChild(e); b.appendChild(t);
+      b.addEventListener('click', function () {
+        answers[q.key] = o[0]; notes[q.key] = o[2] || '';
+        idx++; render(); window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      box.appendChild(b);
+    });
+    el('voltar').hidden = idx === 0;
+  }
+  el('voltar').addEventListener('click', function () { idx = Math.max(0, idx - 1); render(); });
+  el('voltarFinal').addEventListener('click', function () { idx = Q.length - 1; render(); });
+
+  var zap = el('zap');
+  function phoneOk() { var d = zap.value.replace(/\D/g, ''); return d.length === 10 || d.length === 11; }
+  zap.addEventListener('input', function () {
+    var ok = phoneOk();
+    pagar.classList.toggle('off', !ok);
+    if (ok) { zap.classList.remove('bad'); el('zapErr').hidden = true; }
+  });
+  pagar.addEventListener('click', function (e) {
+    if (!phoneOk()) {
+      e.preventDefault(); zap.classList.add('bad'); el('zapErr').hidden = false; zap.focus();
+      return;
+    }
+    if (window.fbq) {
+      fbq('track', 'Lead');
+      fbq('track', 'InitiateCheckout', { value: 39.90, currency: 'BRL', num_items: 3 });
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
