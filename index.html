@@ -77,7 +77,8 @@ h2.sec{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;fon
 .card h2,.card label.big{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,4vw,36px);line-height:1.1}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .choice{display:flex;flex-direction:column;gap:10px;padding:10px;background:var(--bg);border:2px solid var(--line);border-radius:18px;color:var(--text);font:inherit;cursor:pointer;text-align:left}
-.choice:hover,.choice:focus-visible{border-color:var(--gold)}
+.choice:focus-visible{border-color:var(--gold)}
+@media (hover:hover){.choice:hover{border-color:var(--gold)}}
 .choice img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
 .choice span{padding:2px 6px 6px;font-weight:700}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 26px;border-radius:999px;border:0;background:var(--gold);color:var(--ink);font:inherit;font-weight:700;font-size:18px;text-decoration:none;cursor:pointer}
@@ -89,6 +90,16 @@ h2.sec{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;fon
 .field::placeholder{color:var(--faint)}
 .link{align-self:flex-start;min-height:44px;padding:0 4px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:15px;text-decoration:underline;cursor:pointer}
 [hidden]{display:none!important}
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media (max-width:600px){
+  .quiz{padding:48px 16px;scroll-margin-top:12px}
+  .card{padding:20px 16px;gap:16px;border-radius:22px}
+  .card h2,.card label.big{font-size:24px}
+  .choices{gap:10px}
+  .choice{padding:8px;border-radius:14px}
+  .choice img{aspect-ratio:1/1;border-radius:10px}
+  .btn{min-height:52px;font-size:17px}
+}
 
 footer{border-top:1px solid var(--line);padding:40px 20px 48px;text-align:center;font-size:14px;color:var(--faint)}
 </style>
@@ -206,12 +217,18 @@ footer{border-top:1px solid var(--line);padding:40px 20px 48px;text-align:center
   var estilo = '', iniciou = false;
   var q1 = document.getElementById('q1'), q2 = document.getElementById('q2'), q3 = document.getElementById('q3');
   var nome = document.getElementById('nome'), seguir = document.getElementById('seguir');
-  function go(el) { [q1, q2, q3].forEach(function (x) { x.hidden = x !== el; }); }
+  var quizBox = document.getElementById('quiz');
+  function go(el) {
+    [q1, q2, q3].forEach(function (x) { x.hidden = x !== el; });
+    // Mantém o card do quiz no topo da tela a cada passo
+    var top = quizBox.getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * 0.25) quizBox.scrollIntoView({ block: 'start' });
+  }
   document.querySelectorAll('[data-style]').forEach(function (b) {
     b.addEventListener('click', function () {
       estilo = b.getAttribute('data-style');
       if (!iniciou && window.fbq) { fbq('trackCustom', 'QuizIniciado', { estilo: estilo }); iniciou = true; }
-      go(q2); nome.focus();
+      go(q2); nome.focus({ preventScroll: true });
     });
   });
   nome.addEventListener('input', function () { seguir.disabled = !nome.value.trim(); });
