@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+<title>Monte as suas fotos · Murilo Fotos IA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap">
+<style>
+:root{--bg:#121110;--bg2:#1A1816;--bg3:#241E14;--line:#2B2723;--line2:#3A352F;--line3:#4A3F2C;--text:#F4EFE8;--muted:#B8AFA4;--soft:#CFC7BC;--faint:#8C847A;--gold:#E8B04B;--ink:#1A1209;--err:#F2A07B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.wrap{max-width:720px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:22px}
+header{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.brand{font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;color:var(--gold)}
+header h1{margin:0;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,4vw,34px);line-height:1.2}
+header p{margin:0;color:var(--muted);max-width:520px}
+header.mini p{display:none}
+header.mini h1{font-size:20px}
+.prog-top{display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.bar{height:6px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:8px}
+.bar div{height:6px;border-radius:999px;background:var(--gold);transition:width .3s}
+section{display:flex;flex-direction:column;gap:16px}
+h2,label.big{margin:0;font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(22px,3.4vw,30px);line-height:1.2}
+.sub{margin:-6px 0 0;color:var(--muted)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;min-height:66px;padding:8px 14px 8px 8px;border-radius:16px;border:2px solid var(--line);background:var(--bg2);color:var(--text);font:inherit;text-align:left;cursor:pointer}
+.opt.on,.opt:focus-visible{border-color:var(--gold)}
+@media (hover:hover){.opt:hover{border-color:var(--gold)}}
+.opt .e{flex:0 0 auto;width:48px;height:48px;border-radius:12px;background:#241F1A;font-size:24px;display:flex;align-items:center;justify-content:center}
+.opt .t{font-size:17px;font-weight:700;line-height:1.3}
+.opt .c{margin-left:auto;font-size:13px;color:var(--faint);white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:118px;padding:12px 8px;border-radius:16px;border:2px solid var(--line);background:var(--bg2);color:var(--text);font:inherit;text-align:center;cursor:pointer}
+.tile .e{font-size:34px;line-height:1}
+.tile .t{font-size:15px;font-weight:700;line-height:1.25}
+.tile .n{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:999px;background:var(--gold);color:var(--ink);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.tile.on{border-color:var(--gold)}
+.tile.dim{opacity:.45}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--gold);background:var(--bg3);color:var(--gold);font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+.field{width:100%;min-height:54px;padding:0 18px;border-radius:14px;border:1px solid var(--line2);background:var(--bg2);color:var(--text);font:inherit;font-size:18px}
+textarea.field{min-height:120px;padding:14px 18px;resize:vertical;line-height:1.5}
+.field::placeholder{color:var(--faint)}
+.field.bad{border-color:var(--err)}
+.flabel{font-size:15px;font-weight:700;color:var(--soft)}
+.err{margin:-6px 0 0;font-size:14px;color:var(--err)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 24px;border-radius:16px;border:0;background:var(--gold);color:var(--ink);font:inherit;font-weight:700;font-size:18px;text-decoration:none;cursor:pointer;text-align:center}
+.btn.off{opacity:.45}
+.link{align-self:flex-start;min-height:44px;padding:0;border:0;background:transparent;color:var(--muted);font:inherit;font-size:15px;text-decoration:underline;cursor:pointer}
+.bottom{position:sticky;bottom:0;display:flex;flex-direction:column;gap:8px;padding:12px 0 14px;background:linear-gradient(to bottom,rgba(18,17,16,0),var(--bg) 24%)}
+.count{text-align:center;font-size:15px;font-weight:700;color:var(--gold)}
+.note{padding:12px 14px;border-radius:12px;background:var(--bg3);border:1px solid var(--line3);font-size:15px}
+.sum{padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--bg2);display:flex;flex-direction:column;gap:6px}
+.sum .k{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sum pre{margin:0;white-space:pre-wrap;font:inherit;font-size:15px;color:var(--soft)}
+.tips{margin:0;padding-left:20px;color:var(--soft);font-size:15px;display:flex;flex-direction:column;gap:4px}
+body.kb{padding-bottom:55vh}
+[hidden]{display:none!important}
+@media (max-width:600px){
+  .wrap{padding:20px 16px 24px;gap:16px}
+  header h1{font-size:22px}
+  header.mini h1{font-size:18px}
+  header p{font-size:15px}
+  h2,label.big{font-size:21px}
+  .sub{font-size:14px}
+  .opt{min-height:58px;gap:12px;padding:7px 12px 7px 7px;border-radius:14px}
+  .opt .e{width:42px;height:42px;font-size:21px}
+  .opt .t{font-size:16px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .tile{min-height:100px}
+  .tile .e{font-size:28px}
+  .tile .t{font-size:14px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header id="topo">
+    <span class="brand">Murilo Fotos IA</span>
+    <h1 id="titulo">Pagamento confirmado! Agora monte as suas fotos</h1>
+    <p>Escolha os 3 estilos do seu ensaio. No final, a gente monta uma mensagem pronta para você enviar ao Murilo no WhatsApp.</p>
+  </header>
+
+  <div>
+    <div class="prog-top"><span id="progLabel"></span><span id="progPct"></span></div>
+    <div class="bar"><div id="progBar"></div></div>
+  </div>
+
+  <!-- 1. Dados -->
+  <section data-step="dados">
+    <label class="big" for="nome">Como você se chama?</label>
+    <input class="field" id="nome" type="text" autocomplete="name" placeholder="Seu nome">
+    <p class="err" id="nomeErr" hidden>Digite o seu nome para continuar.</p>
+    <label class="flabel" for="email">E-mail usado na compra <span style="font-weight:500;color:var(--faint)">(opcional, ajuda o Murilo a achar o seu pedido)</span></label>
+    <input class="field" id="email" type="email" autocomplete="email" inputmode="email" placeholder="voce@email.com">
+    <div class="bottom"><button type="button" class="btn" id="dadosOk">Continuar</button></div>
+  </section>
+
+  <!-- 2. Quem aparece -->
+  <section data-step="quem" hidden>
+    <h2>Quem vai aparecer nas fotos?</h2>
+    <div class="opts" id="quemOpts"></div>
+    <button type="button" class="link" data-back>Voltar</button>
+  </section>
+
+  <!-- 3. Estilos -->
+  <section data-step="estilos" hidden>
+    <h2>Escolha 3 estilos</h2>
+    <p class="sub">Cada estilo vira uma foto do seu pacote.</p>
+    <div class="chips" id="escolhidos"></div>
+    <div id="catBox">
+      <div class="opts" id="cats"></div>
+    </div>
+    <div id="styleBox" hidden>
+      <div class="grid" id="styles"></div>
+      <button type="button" class="link" id="outraCat" style="margin-top:8px">Ver outras categorias</button>
+    </div>
+    <p class="note" id="limite" hidden>O pacote tem 3 fotos. Toque em um estilo marcado para trocar por outro.</p>
+    <div class="bottom">
+      <span class="count" id="countTxt"></span>
+      <button type="button" class="btn off" id="estilosOk">Continuar</button>
+    </div>
+    <button type="button" class="link" data-back>Voltar</button>
+  </section>
+
+  <!-- 4. Roupa -->
+  <section data-step="roupa" hidden>
+    <h2>Como você quer estar vestido(a)?</h2>
+    <div class="opts" id="roupaOpts"></div>
+    <button type="button" class="link" data-back>Voltar</button>
+  </section>
+
+  <!-- 5. Cores -->
+  <section data-step="cores" hidden>
+    <h2>Quais cores de roupa você prefere?</h2>
+    <div class="opts" id="coresOpts"></div>
+    <button type="button" class="link" data-back>Voltar</button>
+  </section>
+
+  <!-- 6. Observações -->
+  <section data-step="obs" hidden>
+    <label class="big" for="obs">Algum detalhe que o Murilo precisa saber?</label>
+    <p class="sub">Opcional. Por exemplo: usar óculos, manter a barba, cabelo preso, um acessório.</p>
+    <textarea class="field" id="obs" placeholder="Escreva aqui, se quiser"></textarea>
+    <div class="bottom"><button type="button" class="btn" id="obsOk">Ver resumo</button></div>
+    <button type="button" class="link" data-back>Voltar</button>
+  </section>
+
+  <!-- 7. Final -->
+  <section data-step="final" hidden>
+    <h2 id="finalTitulo">Tudo pronto!</h2>
+    <div class="sum"><span class="k">A sua mensagem</span><pre id="preview"></pre></div>
+    <div class="note">
+      <strong>Depois de enviar a mensagem, mande também 1 a 3 fotos suas</strong> na mesma conversa:
+      <ul class="tips">
+        <li>rosto de frente e bem visível</li>
+        <li>boa luz, de preferência natural</li>
+        <li>sem óculos escuros, boné ou filtro</li>
+      </ul>
+    </div>
+    <div class="bottom">
+      <a class="btn" id="enviar" href="#" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        Enviar no WhatsApp
+      </a>
+    </div>
+    <button type="button" class="link" data-back>Voltar e ajustar</button>
+  </section>
+</main>
+
+<script>
+(function () {
+  var WHATSAPP = '558597083362'; // +55 85 9708-3362
+  var el = function (id) { return document.getElementById(id); };
+  function lerSalvo(k) { try { return localStorage.getItem('murilo_' + k) || ''; } catch (e) { return ''; } }
+  function salvar(k, v) { try { localStorage.setItem('murilo_' + k, v); } catch (e) {} }
+
+  var CATALOGO = [
+    { id: 'trabalho', label: 'Para o meu trabalho', emoji: '💼', kids: false, styles: [['Escritório clássico', '🏛️'], ['Mesa de trabalho', '🖋️'], ['Biblioteca', '📚'], ['Retrato executivo', '👔'], ['Sala de reunião', '🤝'], ['Home office', '💻']] },
+    { id: 'empresarial', label: 'Foto empresarial', emoji: '🏢', kids: false, styles: [['Fundo neutro', '⬜'], ['Estúdio escuro', '🎞️'], ['Braços cruzados', '🙅'], ['Poltrona de couro', '🛋️'], ['Corredor corporativo', '🚪'], ['Vista da cidade', '🌆']] },
+    { id: 'redes', label: 'Redes sociais', emoji: '📱', kids: false, styles: [['Cafeteria', '☕'], ['Retrato natural', '🌿'], ['Luz de janela', '🪟'], ['Sofá da sala', '🛋️'], ['Close sorrindo', '😄'], ['Look do dia', '👗']] },
+    { id: 'hobby', label: 'Meu hobby', emoji: '🎸', kids: true, styles: [['Violão', '🎸'], ['Leitura', '📖'], ['Cozinha', '🍳'], ['Esporte', '⚽'], ['Pintura', '🎨'], ['Fotografia', '📷']] },
+    { id: 'arlivre', label: 'Ao ar livre', emoji: '🌳', kids: true, styles: [['Praia', '🏖️'], ['Parque', '🌳'], ['Rua da cidade', '🏙️'], ['Pôr do sol', '🌅'], ['Varanda', '🪴'], ['Campo', '🌾']] },
+    { id: 'diaadia', label: 'Dia a dia', emoji: '☀️', kids: true, styles: [['Em casa', '🏠'], ['Restaurante', '🍽️'], ['Shopping', '🛍️'], ['Viagem', '✈️'], ['Jardim', '🌷'], ['Fim de tarde', '🌇']] }
+  ];
+  var QUEM = [['Mulher', '👩'], ['Homem', '👨'], ['Criança', '🧒']];
+  var ROUPA = [['Social (terno, blazer)', '👔'], ['Esporte fino', '🧥'], ['Casual', '👕'], ['O Murilo escolhe por mim', '✨']];
+  var CORES = [['Tons escuros', '🖤'], ['Tons claros', '🤍'], ['Coloridas', '🌈'], ['Tanto faz', '👌']];
+
+  var ORDEM = ['dados', 'quem', 'estilos', 'roupa', 'cores', 'obs', 'final'];
+  var st = { step: 0, nome: '', email: '', quem: '', estilos: [], cat: '', roupa: '', cores: '', obs: '' };
+
+  // ---------- navegação ----------
+  function ir(i) {
+    st.step = Math.max(0, Math.min(ORDEM.length - 1, i));
+    var nome = ORDEM[st.step];
+    document.querySelectorAll('[data-step]').forEach(function (s) { s.hidden = s.getAttribute('data-step') !== nome; });
+    el('topo').classList.toggle('mini', st.step > 0);
+    var total = ORDEM.length - 1;
+    el('progLabel').textContent = nome === 'final' ? 'Último passo' : 'Etapa ' + (st.step + 1) + ' de ' + total;
+    var pct = Math.round(st.step / total * 100) + '%';
+    el('progPct').textContent = pct; el('progBar').style.width = pct;
+    if (nome === 'estilos') renderEstilos();
+    if (nome === 'final') renderFinal();
+    window.scrollTo(0, 0);
+  }
+  document.querySelectorAll('[data-back]').forEach(function (b) { b.addEventListener('click', function () { ir(st.step - 1); }); });
+
+  function opcoes(boxId, lista, chave) {
+    var box = el(boxId);
+    function draw() {
+      box.innerHTML = '';
+      lista.forEach(function (o) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'opt' + (st[chave] === o[0] ? ' on' : '');
+        var e = document.createElement('span'); e.className = 'e'; e.setAttribute('aria-hidden', 'true'); e.textContent = o[1];
+        var t = document.createElement('span'); t.className = 't'; t.textContent = o[0];
+        b.appendChild(e); b.appendChild(t);
+        b.addEventListener('click', function () {
+          if (chave === 'quem' && st.quem !== o[0]) { st.estilos = []; st.cat = ''; }
+          st[chave] = o[0]; draw(); ir(st.step + 1);
+        });
+        box.appendChild(b);
+      });
+    }
+    draw();
+  }
+
+  // ---------- 1. dados ----------
+  el('nome').value = lerSalvo('nome');
+  el('email').value = lerSalvo('email');
+  el('dadosOk').addEventListener('click', function () {
+    var n = el('nome').value.trim();
+    if (!n) { el('nome').classList.add('bad'); el('nomeErr').hidden = false; el('nome').focus(); return; }
+    st.nome = n; st.email = el('email').value.trim();
+    salvar('nome', n); if (st.email) salvar('email', st.email);
+    el('nome').classList.remove('bad'); el('nomeErr').hidden = true;
+    ir(1);
+  });
+
+  // ---------- 2, 4, 5 ----------
+  opcoes('quemOpts', QUEM, 'quem');
+  opcoes('roupaOpts', ROUPA, 'roupa');
+  opcoes('coresOpts', CORES, 'cores');
+
+  // ---------- 3. estilos ----------
+  function catsVisiveis() { return CATALOGO.filter(function (c) { return st.quem !== 'Criança' || c.kids; }); }
+  function idx(cat, nome) { return st.estilos.findIndex(function (s) { return s.cat === cat && s.nome === nome; }); }
+  function renderEstilos() {
+    // estilos escolhidos (toque para remover)
+    var ch = el('escolhidos'); ch.innerHTML = '';
+    st.estilos.forEach(function (s, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'chip';
+      b.setAttribute('aria-label', 'Remover ' + s.nome);
+      b.textContent = (i + 1) + '. ' + s.emoji + ' ' + s.nome + ' ✕';
+      b.addEventListener('click', function () { st.estilos.splice(i, 1); el('limite').hidden = true; renderEstilos(); });
+      ch.appendChild(b);
+    });
+    var cheio = st.estilos.length >= 3;
+    // categorias
+    el('catBox').hidden = !!st.cat; el('styleBox').hidden = !st.cat;
+    var cats = el('cats'); cats.innerHTML = '';
+    catsVisiveis().forEach(function (c) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'opt';
+      var e = document.createElement('span'); e.className = 'e'; e.setAttribute('aria-hidden', 'true'); e.textContent = c.emoji;
+      var t = document.createElement('span'); t.className = 't'; t.textContent = c.label;
+      var n = st.estilos.filter(function (s) { return s.cat === c.label; }).length;
+      var k = document.createElement('span'); k.className = 'c'; k.textContent = n ? n + ' escolhido' + (n > 1 ? 's' : '') : c.styles.length + ' estilos';
+      b.appendChild(e); b.appendChild(t); b.appendChild(k);
+      b.addEventListener('click', function () { st.cat = c.id; renderEstilos(); window.scrollTo(0, 0); });
+      cats.appendChild(b);
+    });
+    // estilos da categoria
+    var cat = CATALOGO.filter(function (c) { return c.id === st.cat; })[0];
+    var grid = el('styles'); grid.innerHTML = '';
+    if (cat) cat.styles.forEach(function (s) {
+      var i = idx(cat.label, s[0]);
+      var b = document.createElement('button'); b.type = 'button';
+      b.className = 'tile' + (i >= 0 ? ' on' : (cheio ? ' dim' : ''));
+      b.setAttribute('aria-pressed', i >= 0 ? 'true' : 'false');
+      var e = document.createElement('span'); e.className = 'e'; e.setAttribute('aria-hidden', 'true'); e.textContent = s[1];
+      var t = document.createElement('span'); t.className = 't'; t.textContent = s[0];
+      b.appendChild(e); b.appendChild(t);
+      if (i >= 0) { var n = document.createElement('span'); n.className = 'n'; n.textContent = i + 1; b.appendChild(n); }
+      b.addEventListener('click', function () {
+        var j = idx(cat.label, s[0]);
+        if (j >= 0) { st.estilos.splice(j, 1); el('limite').hidden = true; }
+        else if (st.estilos.length >= 3) { el('limite').hidden = false; return; }
+        else st.estilos.push({ cat: cat.label, nome: s[0], emoji: s[1] });
+        renderEstilos();
+      });
+      grid.appendChild(b);
+    });
+    var falta = 3 - st.estilos.length;
+    el('countTxt').textContent = falta > 0 ? 'Escolha mais ' + falta + (falta === 1 ? ' estilo' : ' estilos') + ' (' + st.estilos.length + ' de 3)' : '3 de 3 estilos escolhidos';
+    el('estilosOk').classList.toggle('off', falta > 0);
+  }
+  el('outraCat').addEventListener('click', function () { st.cat = ''; renderEstilos(); window.scrollTo(0, 0); });
+  el('estilosOk').addEventListener('click', function () {
+    if (st.estilos.length < 3) { el('countTxt').textContent = 'Escolha 3 estilos para continuar (' + st.estilos.length + ' de 3)'; return; }
+    ir(st.step + 1);
+  });
+
+  // ---------- 6. observações ----------
+  el('obsOk').addEventListener('click', function () { st.obs = el('obs').value.trim(); ir(st.step + 1); });
+
+  // ---------- 7. mensagem final ----------
+  function mensagem() {
+    var l = [];
+    l.push('*Novo pedido · Murilo Fotos IA*');
+    l.push('');
+    l.push('*Nome:* ' + st.nome);
+    if (st.email) l.push('*E-mail da compra:* ' + st.email);
+    l.push('*Quem aparece:* ' + st.quem);
+    l.push('');
+    l.push('*Estilos escolhidos:*');
+    st.estilos.forEach(function (s, i) { l.push((i + 1) + '. ' + s.nome + ' (' + s.cat + ')'); });
+    l.push('');
+    l.push('*Roupa:* ' + st.roupa);
+    l.push('*Cores:* ' + st.cores);
+    if (st.obs) l.push('*Observações:* ' + st.obs);
+    l.push('');
+    l.push('Vou enviar as minhas fotos em seguida.');
+    return l.join('\n');
+  }
+  function renderFinal() {
+    var primeiro = st.nome.split(' ')[0];
+    el('finalTitulo').textContent = 'Tudo pronto, ' + primeiro + '!';
+    var m = mensagem();
+    el('preview').textContent = m.replace(/\*/g, '');
+    el('enviar').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(m);
+  }
+
+  // ---------- teclado do celular ----------
+  function keepVisible(input) {
+    function fix() { if (document.activeElement === input) input.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    input.addEventListener('focus', function () { document.body.classList.add('kb'); setTimeout(fix, 300); setTimeout(fix, 650); });
+    input.addEventListener('blur', function () { setTimeout(function () { document.body.classList.remove('kb'); }, 250); });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', fix);
+  }
+  ['nome', 'email', 'obs'].forEach(function (id) { keepVisible(el(id)); });
+
+  ir(0);
+})();
+</script>
+</body>
+</html>
