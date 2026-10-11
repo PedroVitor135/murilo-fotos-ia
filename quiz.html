@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
 <title>Monte o seu ensaio · Murilo Fotos IA</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,6 +64,7 @@ label.big{font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(24px,
 .home{align-self:center;font-size:15px;color:var(--faint)}
 section{display:flex;flex-direction:column;gap:18px}
 [hidden]{display:none!important}
+body.kb{padding-bottom:55vh}
 button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 /* Depois da primeira resposta o topo encolhe, para a pergunta caber na tela */
 header.mini{gap:8px}
@@ -234,6 +235,15 @@ header.mini h1{font-size:22px}
   });
 
   render();
+
+  // Mantém o campo visível quando o teclado do celular abre
+  function keepVisible(input) {
+    function fix() { if (document.activeElement === input) input.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    input.addEventListener('focus', function () { document.body.classList.add('kb'); setTimeout(fix, 300); setTimeout(fix, 650); });
+    input.addEventListener('blur', function () { setTimeout(function () { document.body.classList.remove('kb'); }, 250); });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', fix);
+  }
+  keepVisible(el('zap'));
 })();
 </script>
 </body>

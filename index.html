@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
 <title>Murilo Fotos IA · Ensaios ultra realistas com IA</title>
 <meta name="description" content="Ensaio de fotos formais e casuais ultra realistas com IA. Você manda uma foto simples e recebe o seu ensaio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,6 +90,7 @@ h2.sec{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;fon
 .field::placeholder{color:var(--faint)}
 .link{align-self:flex-start;min-height:44px;padding:0 4px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:15px;text-decoration:underline;cursor:pointer}
 [hidden]{display:none!important}
+body.kb{padding-bottom:55vh}
 button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @media (max-width:600px){
   .quiz{padding:48px 16px;scroll-margin-top:12px}
@@ -228,7 +229,7 @@ footer{border-top:1px solid var(--line);padding:40px 20px 48px;text-align:center
     b.addEventListener('click', function () {
       estilo = b.getAttribute('data-style');
       if (!iniciou && window.fbq) { fbq('trackCustom', 'QuizIniciado', { estilo: estilo }); iniciou = true; }
-      go(q2); nome.focus({ preventScroll: true });
+      go(q2); nome.focus();
     });
   });
   nome.addEventListener('input', function () { seguir.disabled = !nome.value.trim(); });
@@ -245,6 +246,15 @@ footer{border-top:1px solid var(--line);padding:40px 20px 48px;text-align:center
     go(q3);
   });
   document.getElementById('refazer').addEventListener('click', function () { estilo = ''; nome.value = ''; seguir.disabled = true; go(q1); });
+
+  // Mantém o campo visível quando o teclado do celular abre
+  function keepVisible(input) {
+    function fix() { if (document.activeElement === input) input.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    input.addEventListener('focus', function () { document.body.classList.add('kb'); setTimeout(fix, 300); setTimeout(fix, 650); });
+    input.addEventListener('blur', function () { setTimeout(function () { document.body.classList.remove('kb'); }, 250); });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', fix);
+  }
+  keepVisible(nome);
 })();
 </script>
 </body>
